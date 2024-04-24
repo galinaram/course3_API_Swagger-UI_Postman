@@ -15,12 +15,21 @@ public class FacultyService {
         return facultyMap.put(lastId, faculty);
     }
     public Faculty findFaculty(long id){
-        return facultyMap.get(id);
+        if (facultyMap.containsKey(id)) {
+            return facultyMap.get(id);
+        }
+        return null;
     }
     public Faculty editFaculty(Faculty faculty){
-        return facultyMap.put(faculty.getId(), faculty);
+        if (facultyMap.containsKey(faculty.getId())) {
+            return facultyMap.put(faculty.getId(), faculty);
+        }
+        return null;
     }
     public Faculty deleteFaculty(long id){
-        return facultyMap.remove(id);
+        if (facultyMap.containsKey(id)) {
+            return facultyMap.remove(id);
+        }
+        return null;
     }
 }

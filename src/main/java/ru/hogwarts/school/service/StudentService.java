@@ -3,7 +3,9 @@ package ru.hogwarts.school.service;
 import org.springframework.stereotype.Service;
 import ru.hogwarts.school.model.Student;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 @Service
 public class StudentService {
@@ -16,11 +18,17 @@ public class StudentService {
         return student;
     }
     public Student findStudent(long id){
-        return studentMap.get(id);
+        if (studentMap.containsKey(id)) {
+            return studentMap.get(id);
+        }
+        return null;
     }
     public Student editStudent(Student student){
-        studentMap.put(student.getId(), student);
-        return student;
+        if (studentMap.containsKey(student.getId())) {
+            studentMap.put(student.getId(), student);
+            return student;
+        }
+        return null;
     }
     public Student deleteStudent(long id){
         return studentMap.remove(id);
